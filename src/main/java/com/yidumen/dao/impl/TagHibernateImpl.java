@@ -56,13 +56,15 @@ public class TagHibernateImpl extends AbstractHibernateImpl<Tag> implements TagD
     }
 
     @Override
-    public List<Tag> find(Tag tag) {
+    public List<Tag> find(Tag tag, boolean eager) {
         final List<Tag> result = this.sessionFactory.getCurrentSession()
                 .createCriteria(Tag.class)
                 .add(Example.create(tag)
                         .excludeProperty("hits"))
                 .list();
-        initializeListLazy(result);
+        if (eager) {
+            initializeListLazy(result);
+        }
         return result;
     }
 

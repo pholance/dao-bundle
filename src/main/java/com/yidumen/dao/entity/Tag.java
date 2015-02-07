@@ -2,7 +2,6 @@ package com.yidumen.dao.entity;
 
 import com.yidumen.dao.constant.TagType;
 import java.io.Serializable;
-import java.util.List;
 import java.util.Set;
 import javax.persistence.Basic;
 import javax.persistence.Column;

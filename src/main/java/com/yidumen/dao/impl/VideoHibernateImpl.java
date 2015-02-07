@@ -7,7 +7,6 @@ import com.yidumen.dao.entity.Video;
 import com.yidumen.dao.entity.VideoInfo;
 import com.yidumen.dao.model.VideoQueryModel;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import org.hibernate.Criteria;
@@ -120,6 +119,13 @@ public class VideoHibernateImpl extends AbstractHibernateImpl<Video> implements 
         return (Long) criteria.uniqueResult();
     }
 
+    @Override
+    public Object max(VideoQueryModel model) {
+        final Criteria criteria = createCriteria(model);
+        criteria.setProjection(Projections.max(model.getMaxProperty()));
+        return criteria.uniqueResult();
+    }
+
     private Criteria createCriteria(VideoQueryModel model) throws HibernateException {
         final Criteria criteria = this.sessionFactory.getCurrentSession().createCriteria(Video.class);
         if (model.getSort2() > 0) {
@@ -198,7 +204,7 @@ public class VideoHibernateImpl extends AbstractHibernateImpl<Video> implements 
         if (model.getLimit() > 0) {
             criteria.setMaxResults(new Long(model.getLimit()).intValue());
         }
-        
+
         return criteria;
     }
 

@@ -34,4 +34,6 @@ public interface VideoDAO extends BaseDAO<Video> {
 
     Long count(VideoQueryModel model);
     
+    Object max(VideoQueryModel model);
+    
 }

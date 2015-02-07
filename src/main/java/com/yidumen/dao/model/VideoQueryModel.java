@@ -50,6 +50,7 @@ public class VideoQueryModel extends Video {
     private int first;
     private long limit;
     private String orderProperty;
+    private String maxProperty;
     private boolean desc;
     private boolean allEager;
 
@@ -179,6 +180,14 @@ public class VideoQueryModel extends Video {
 
     public void setAllEager(boolean allEager) {
         this.allEager = allEager;
+    }
+
+    public String getMaxProperty() {
+        return maxProperty;
+    }
+
+    public void setMaxProperty(String maxProperty) {
+        this.maxProperty = maxProperty;
     }
 
 }
